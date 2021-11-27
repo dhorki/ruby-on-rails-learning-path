@@ -118,9 +118,9 @@ module Environment
 
 		EXPRESSION_KEYS = %w(hello goodbye my_name_is i_come_from)
 
-		EXPRESSION_KEYS.each do |key|
+		EXPRESSION_KEYS.map(&:to_sym).each do |key|
 			define_method("say_#{key}") do |language|
-				@expressions[key.to_sym][language]
+				@expressions[key][language]
 			end
 		end
 
