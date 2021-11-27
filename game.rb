@@ -2,7 +2,7 @@ require './environment.rb'
 
 class Game
 
-  attr_accessor :board, :depot, :control
+  attr_accessor :board, :depot, :control, :dictionary
 
   def initialize
     @board = {
@@ -12,6 +12,7 @@ class Game
     }
     @depot = Environment::Depot.new
     @control = Environment::Control.new
+    @dictionary = Environment::Dictionary.new
 
   end
 
@@ -29,6 +30,7 @@ class Game
 end
 
 game = Game.new
+
 diego = game.new_worker name: 'Diego'
 diego.set_personal_data surname: 'Mota', age: 40, marital_status: :single, children: 0, country: :mx,
                         language: :es
@@ -48,3 +50,13 @@ game.new_mission name: name, objective: objective, pack: game.depot.packs[pack]
 p game.control.missions[:alpha]
 
 game.control.set_mission_to_accomplished(:alpha) and puts game.control.missions[:alpha]
+
+p '------------------------------------------'
+language = :es
+hello = game.dictionary.say_hello(language)
+my_name_is = game.dictionary.say_my_name_is(language)
+i_come_from = game.dictionary.say_i_come_from(language)
+
+p hello
+p my_name_is
+p i_come_from

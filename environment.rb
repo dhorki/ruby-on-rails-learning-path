@@ -112,6 +112,29 @@ module Environment
 		end
 
 	end
+
+	class Dictionary
+		attr_accessor :expressions
+
+		EXPRESSION_KEYS = %w(hello goodbye my_name_is i_come_from)
+
+		EXPRESSION_KEYS.each do |key|
+			define_method("say_#{key}") do |language|
+				@expressions[key.to_sym][language]
+			end
+		end
+
+		def initialize
+			@expressions = {
+				EXPRESSION_KEYS[0].to_sym           => { :en => 'hello', :es => 'hola', :cz =>'ahoj' },
+				EXPRESSION_KEYS[1].to_sym          	=> { :en => 'goodbye', :es => 'adios', :cz => 'nashledanou' },
+				EXPRESSION_KEYS[2].to_sym       		=> { :en => 'my name is', :es => 'mi nombre es', :cz => 'jmenuju se' },
+				EXPRESSION_KEYS[3].to_sym      			=> { :en => 'i come from', :es => 'yo vengo de', :cz => 'ja odchazim od' }
+			}
+		end
+
+	end
+
 end
 
 
