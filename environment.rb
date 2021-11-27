@@ -135,6 +135,26 @@ module Environment
 
 	end
 
+	class Poker
+		attr_accessor :deck
+
+
+		def initialize
+			ranks = %w(one two three four five six seven eight nine ten jack queen king)
+			suits = %w(clubs diamonds hearts spades)
+
+			@deck = Array.new
+
+			suits.each do |type|
+				ranks.each do |card|
+					@deck.push("#{card}_of_#{type}".to_sym)
+				end
+			end
+		end
+
+
+	end
+
 end
 
 

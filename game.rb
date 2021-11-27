@@ -60,3 +60,7 @@ i_come_from = game.dictionary.say_i_come_from(language)
 p hello
 p my_name_is
 p i_come_from
+
+p '------------------------------------------'
+poker = Environment::Poker.new
+p poker.deck
