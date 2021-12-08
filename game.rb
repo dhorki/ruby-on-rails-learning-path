@@ -22,8 +22,7 @@ class Game
   end
 
   def new_worker( name: )
-    worker = Environment::Worker.new
-    worker.name = name
+    worker = Environment::Worker.new name
     @board[:players][name] = worker
   end
 
