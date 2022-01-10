@@ -6,22 +6,22 @@ module Environment
 			@packs = {
 				:simple_transportation_pack => {
 					:intelligence => 		[:cellphone],
-					:items => 					[:medipack, :chevy_versa]
+					:items => 				[:medipack, :chevy_versa]
 				},
 				:standard_transportation_pack => {
 					:intelligence => 		[:cellphone, :antenna],
-					:arsenal => 				[:colt_1911],
-					:items => 					[:handcuffs, :medipack, :chemistry, :chevy_versa]
+					:arsenal => 			[:colt_1911],
+					:items => 				[:handcuffs, :medipack, :chemistry, :chevy_versa]
 				},
 				:simple_mission_pack => {
 					:intelligence => 		[:infopack, :laptop, :cellphone, :antenna],
-					:arsenal => 					[:colt_1911],
-					:items => 						[:handcuffs, :medipack, :chemistry, :financial]
+					:arsenal => 			[:colt_1911],
+					:items => 				[:handcuffs, :medipack, :chemistry, :financial]
 				},
 				:standard_mission_pack => {
 					:intelligence => 		[:infopack, :laptop, :cellphone, :antenna],
-					:arsenal => 					[:remington_870, :colt_1911, :machete, :hatchet],
-					:items => 						[:handcuffs, :medipack, :chemistry, :financial]
+					:arsenal => 			[:remington_870, :colt_1911, :machete, :hatchet],
+					:items => 				[:handcuffs, :medipack, :chemistry, :financial]
 				}
 			}
 		end
@@ -98,18 +98,18 @@ module Environment
 		def initialize(name)
 			super name: name
 			@standard_shift = {
-				:id 				=> object_id,
+				:id 			=> object_id,
 				:hours 			=> 8,
 				:payment		=> 8,
-				:facility 	=> String.new,
+				:facility 		=> String.new,
 				:status 		=> nil
 			}
 
 			@extra_shift = {
-				:id 				=> object_id,
+				:id 			=> object_id,
 				:hours 			=> 0,
 				:payment		=> 0.0,
-				:facility 	=> String.new,
+				:facility 		=> String.new,
 				:status 		=> nil
 			}
 		end
@@ -131,8 +131,8 @@ module Environment
 			@expressions = {
 				EXPRESSION_KEYS[0]          => { :en => 'hello', :es => 'hola', :cz =>'ahoj' },
 				EXPRESSION_KEYS[1]          => { :en => 'goodbye', :es => 'adios', :cz => 'nashledanou' },
-				EXPRESSION_KEYS[2]       		=> { :en => 'my name is', :es => 'mi nombre es', :cz => 'jmenuju se' },
-				EXPRESSION_KEYS[3]      		=> { :en => 'i come from', :es => 'yo vengo de', :cz => 'ja odchazim od' }
+				EXPRESSION_KEYS[2]       	=> { :en => 'my name is', :es => 'mi nombre es', :cz => 'jmenuju se' },
+				EXPRESSION_KEYS[3]      	=> { :en => 'i come from', :es => 'yo vengo de', :cz => 'ja odchazim od' }
 			}
 		end
 
@@ -164,11 +164,13 @@ end
 
 # depot = Depot.new
 # control = Control.new
-#
+
 # p depot.packs[:simple_transportation_pack]
 # p depot.packs[:standard_mission_pack]
 # p depot.packs[:standard_mission_pack][:items]
-#
+
 # name = :alpha and objective = 'Get Alpha to the base' and pack = :simple_transportation_pack
 # control.new_mission name: name, objective: objective, pack: depot.packs[pack]
 # p control.missions[:alpha]
+# control.set_mission_to_accomplished :alpha
+# puts control.missions
