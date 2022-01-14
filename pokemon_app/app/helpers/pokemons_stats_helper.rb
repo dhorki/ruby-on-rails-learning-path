@@ -1,0 +1,2 @@
+module PokemonsStatsHelper
+end

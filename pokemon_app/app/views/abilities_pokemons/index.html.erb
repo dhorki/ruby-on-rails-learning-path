@@ -1,0 +1,44 @@
+<% @page_title = @pokemon_id ? "#{@pokemon_name} (id: #{@pokemon_id}) Abilities" : "All Pokemons Abilities" %>
+
+<%= link_to("<< Back to Pokemon List", pokemons_path(:pokemon_page => params[:pokemon_page])) %>
+
+<div>
+  <h2><%= @pokemon_id ? "#{@pokemon_name} (id: #{@pokemon_id}) Abilities" : "Abilities" %></h2>
+  <% if user_logged_in? %>
+    <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
+    <%= link_to("Add New Pokemon Ability", new_abilities_pokemon_path(:pokemon_page => params[:pokemon_page], :ability_page => @ability_page, :pokemon_id => params[:pokemon_id])) %>
+  <% end %>
+
+  <%= will_paginate @abilities_pokemons %>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Pokemon ID</th>
+      <th>Pokemon Name</th>
+      <th>Ability ID</th>
+      <th>Ability Name</th>
+      <th>Is Hidden?</th>
+      <th>Slot</th>
+      <th>Actions</th>
+    </tr>
+    <% @abilities_pokemons.each do |ability_pokemon| %>
+      <tr>
+        <td><%= ability_pokemon.id %></td>
+        <td><%= ability_pokemon.pokemon.id %></td>
+        <td><%= ability_pokemon.pokemon.name %></td>
+        <td><%= ability_pokemon.ability.id %></td>
+        <td><%= ability_pokemon.ability.name %></td>
+        <td><%= check_box_tag(:is_hidden, :is_hidden, ability_pokemon.is_hidden, disabled: true) %></td>
+        <td><%= ability_pokemon.slot %></td>
+        <td>
+          <%= link_to("Show", abilities_pokemon_path(ability_pokemon, :pokemon_page => params[:pokemon_page], :ability_page => @ability_page, :pokemon_id => params[:pokemon_id])) %>
+          <% if user_logged_in? %>
+            <%= link_to("Edit", edit_abilities_pokemon_path(ability_pokemon, :pokemon_page => params[:pokemon_page], :ability_page => @ability_page, :pokemon_id => params[:pokemon_id])) %>
+            <%= link_to("Remove", delete_abilities_pokemon_path(ability_pokemon, :pokemon_page => params[:pokemon_page], :ability_page => @ability_page, :pokemon_id => params[:pokemon_id])) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @abilities_pokemons %>
+</div>

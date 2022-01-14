@@ -1,0 +1,27 @@
+<%= error_messages_for(f.object) %>
+<table>
+  <% if mode == :edit %>
+    <tr>
+      <th>#</th>
+      <td><%= @stat.id %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <th>Name</th>
+    <td><%= f.text_field(:name) %></td>
+  </tr>
+  <tr>
+    <th>url</th>
+    <td><%= f.text_field(:url) %></td>
+  </tr>
+  <% if mode == :edit %>
+    <tr>
+      <th>created at</th>
+      <td><%= @stat.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @stat.updated_at %></td>
+    </tr>
+  <% end %>
+</table>

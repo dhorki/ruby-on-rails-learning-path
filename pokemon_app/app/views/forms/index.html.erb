@@ -1,0 +1,41 @@
+<% @page_title = "All Forms" %>
+
+<%= link_to("<< Back to Menu", pokemons_path(:page => params[:page])) %>
+
+<div>
+  <h2>Forms</h2>
+  <% if user_logged_in? %>
+    <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
+    <%= link_to("Add New Form", new_form_path(:page => params[:page])) %>
+  <% end %>
+
+  <%= will_paginate @forms %>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>name</th>
+      <th>url</th>
+      <% if user_logged_in? %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+    <% @forms.each do |form| %>
+      <tr>
+        <td><%= form.id %></td>
+        <td><%= form.name %></td>
+        <td><%= link_to(form.url, form.url) %></td>
+        <td>
+          <%= link_to("Show", form_path(form, :page => params[:page])) %>
+          <% if user_logged_in? %>
+            <%= link_to("Edit", edit_form_path(form, :page => params[:page])) %>
+            <%= link_to("Delete", delete_form_path(form, :page => params[:page])) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @forms %>
+  
+</div>
+
+

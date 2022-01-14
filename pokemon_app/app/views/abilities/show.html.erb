@@ -1,0 +1,30 @@
+<% @page_title = "Show Ability" %>
+
+<%= link_to("<< Back to List", abilities_path(:page => params[:page])) %>
+
+<div>
+  <h2>Show Ability</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <td><%= @ability.id %></td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <td><%= @ability.name %></td>
+    </tr>
+    <tr>
+      <th>url</th>
+      <td><%= link_to(@ability.url, @ability.url) %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @ability.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @ability.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

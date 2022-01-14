@@ -1,0 +1,55 @@
+<% @page_title = "All Sprites" %>
+
+<%= link_to("<< Back to Menu", pokemons_path(:pokemon_id => params[:pokemon_id], :pokemon_page => params[:pokemon_page], :page => params[:page])) %>
+
+<div>
+  <h2>Sprites</h2>
+  <% if user_logged_in? %>
+    <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
+    <%= link_to("Add New Sprite", new_sprite_path(:pokemon_id => params[:pokemon_id], :pokemon_page => params[:pokemon_page], :page => params[:page])) %>
+  <% end %>
+
+  <%= will_paginate @sprites %>
+  <table>
+    <tr>
+      <th>Pokemon</th>
+      <th>Back Default</th>
+      <th>Back Female</th>
+      <th>Back Shiny</th>
+      <th>Back Shiny Female</th>
+      <th>Front Default</th>
+      <th>Front Female</th>
+      <th>Front Shiny</th>
+      <th>Front Shiny Female</th>
+      <th>Official Artwork Front Default</th>
+      <% if user_logged_in? %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+    <% @sprites.each do |sprite| %>
+      <tr>
+        <td><%= sprite.pokemon.name %></td>
+        <td><%= link_to(image_placeholder(sprite.back_default, '64x64'), sprite.back_default) %></td>
+        <td><%= link_to(image_placeholder(sprite.back_female, '64x64'), sprite.back_female) %></td>
+        <td><%= link_to(image_placeholder(sprite.back_shiny, '64x64'), sprite.back_shiny) %></td>
+        <td><%= link_to(image_placeholder(sprite.back_shiny_female, '64x64'), sprite.back_shiny_female) %></td>
+        <td><%= link_to(image_placeholder(sprite.front_default, '64x64'), sprite.front_default) %></td>
+        <td><%= link_to(image_placeholder(sprite.front_female, '64x64'), sprite.front_female) %></td>
+        <td><%= link_to(image_placeholder(sprite.front_shiny, '64x64'), sprite.front_shiny) %></td>
+        <td><%= link_to(image_placeholder(sprite.front_shiny_female, '64x64'), sprite.front_shiny_female) %></td>
+        <td><%= link_to(image_placeholder(sprite.official_artwork_front_default, '64x64'), sprite.official_artwork_front_default) %></td>
+        <td>
+          <%= link_to("Show", sprite_path(sprite, :pokemon_id => params[:pokemon_id], :pokemon_page => params[:pokemon_page], :page => params[:page])) %>
+          <% if user_logged_in? %>
+            <%= link_to("Edit", edit_sprite_path(sprite, :pokemon_id => params[:pokemon_id], :pokemon_page => params[:pokemon_page], :page => params[:page])) %>
+            <%= link_to("Delete", delete_sprite_path(sprite, :page => params[:page])) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @sprites %>
+  
+</div>
+
+

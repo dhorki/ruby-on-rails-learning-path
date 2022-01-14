@@ -1,0 +1,19 @@
+<% @page_title = "Delete Item" %>
+
+<%= link_to("<< Back to List", items_path(:page => params[:page])) %>
+
+<div>
+  <h2>Remove Pokemon Type</h2>
+
+  <%= form_for(@item, :method => 'delete', :url => item_path(@item, :page => params[:page])) do |f| %>
+
+    <p>Are you sure you want to permanently remove this Item?</p>
+
+    <p><%= "(id #{f.object.id}) #{f.object.name}"  %></p>
+
+    <div>
+      <%= f.submit("Delete Item") %>
+    </div>
+
+  <% end %>
+</div>

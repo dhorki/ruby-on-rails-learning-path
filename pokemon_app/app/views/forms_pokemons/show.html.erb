@@ -1,0 +1,38 @@
+<% @page_title = "Show Pokemon Form" %>
+
+<%= link_to("<< Back to List", forms_pokemons_path(:pokemon_page => params[:pokemon_page], :form_page => @form_page, :pokemon_id => params[:pokemon_id])) %>
+
+<div>
+  <h2>Show Pokemon Form</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <td><%= @forms_pokemon.id %></td>
+    </tr>
+    <tr>
+      <th>Pokemon ID</th>
+      <td><%= @forms_pokemon.pokemon.id %></td>
+    </tr>
+    <tr>
+      <th>Pokemon Name</th>
+      <td><%= @forms_pokemon.pokemon.name %></td>
+    </tr>
+    <tr>
+      <th>Form ID</th>
+      <td><%= @forms_pokemon.form.id %></td>
+    </tr>
+    <tr>
+      <th>Form Name</th>
+      <td><%= @forms_pokemon.form.name %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @forms_pokemon.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @forms_pokemon.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

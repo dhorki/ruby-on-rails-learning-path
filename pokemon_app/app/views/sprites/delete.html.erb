@@ -1,0 +1,19 @@
+<% @page_title = "Delete Sprite" %>
+
+<%= link_to("<< Back to List", sprites_path(:pokemon_id => params[:pokemon_id], :pokemon_page => params[:pokemon_page], :page => params[:page])) %>
+
+<div>
+  <h2>Remove Pokemon Type</h2>
+
+  <%= form_for(@sprite, :method => 'delete', :url => sprite_path(@sprite, :pokemon_id => params[:pokemon_id], :pokemon_page => params[:pokemon_page], :page => params[:page])) do |f| %>
+
+    <p>Are you sure you want to permanently remove this Sprite?</p>
+
+    <p><%= "For Pokemon: #{f.object.pokemon.name}"  %></p>
+
+    <div>
+      <%= f.submit("Delete Sprite") %>
+    </div>
+
+  <% end %>
+</div>

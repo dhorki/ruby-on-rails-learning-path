@@ -1,0 +1,17 @@
+<% @page_title = "Edit Ability" %>
+
+<%= link_to("<< Back to List", abilities_path(:page => params[:page])) %>
+
+<div>
+  <h2>Edit Ability</h2>
+
+  <%= form_for(@ability, :url => ability_path(@ability, :page => params[:page])) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f, :mode => :edit}) %>
+
+    <div>
+      <%= f.submit("Edit Ability") %>
+    </div>
+
+  <% end %>
+</div>

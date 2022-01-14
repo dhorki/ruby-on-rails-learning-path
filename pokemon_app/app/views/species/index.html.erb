@@ -1,0 +1,41 @@
+<% @page_title = "All Species" %>
+
+<%= link_to("<< Back to Menu", pokemons_path(:page => params[:page])) %>
+
+<div>
+  <h2>Species</h2>
+  <% if user_logged_in? %>
+    <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
+    <%= link_to("Add New Species", new_species_path(:page => params[:page])) %>
+  <% end %>
+
+  <%= will_paginate @species %>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>name</th>
+      <th>url</th>
+      <% if user_logged_in? %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+    <% @species.each do |species| %>
+      <tr>
+        <td><%= species.id %></td>
+        <td><%= species.name %></td>
+        <td><%= link_to(species.url, species.url) %></td>
+        <td>
+          <%= link_to("Show", species_path(species, :page => params[:page])) %>
+          <% if user_logged_in? %>
+            <%= link_to("Edit", edit_species_path(species, :page => params[:page])) %>
+            <%= link_to("Delete", delete_species_path(species, :page => params[:page])) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @species %>
+  
+</div>
+
+

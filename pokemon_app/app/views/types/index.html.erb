@@ -1,0 +1,41 @@
+<% @page_title = "All Types" %>
+
+<%= link_to("<< Back to Menu", pokemons_path(:page => params[:page])) %>
+
+<div>
+  <h2>Types</h2>
+  <% if user_logged_in? %>
+    <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
+    <%= link_to("Add New Type", new_type_path(:page => params[:page])) %>
+  <% end %>
+
+  <%= will_paginate @types %>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>name</th>
+      <th>url</th>
+      <% if user_logged_in? %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+    <% @types.each do |type| %>
+      <tr>
+        <td><%= type.id %></td>
+        <td><%= type.name %></td>
+        <td><%= link_to(type.url, type.url) %></td>
+        <td>
+          <%= link_to("Show", type_path(type, :page => params[:page])) %>
+          <% if user_logged_in? %>
+            <%= link_to("Edit", edit_type_path(type, :page => params[:page])) %>
+            <%= link_to("Delete", delete_type_path(type, :page => params[:page])) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @types %>
+
+</div>
+
+

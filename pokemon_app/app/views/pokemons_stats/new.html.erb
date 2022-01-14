@@ -1,0 +1,17 @@
+<% @page_title = "Add Pokemon Stat" %>
+
+<%= link_to("<< Back to List", pokemons_stats_path(:pokemon_page => params[:pokemon_page], :stat_page => @stat_page, :pokemon_id => params[:pokemon_id])) %>
+
+<div>
+  <h2>Add Pokemon Stat</h2>
+
+  <%= form_for(@pokemon_stat, :url => pokemons_stats_path(@pokemon_stat, :pokemon_page => params[:pokemon_page], :stat_page => @stat_page, :pokemon_id => params[:pokemon_id])) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f, :mode => :new}) %>
+
+    <div>
+      <%= f.submit("Add Pokemon Stat") %>
+    </div>
+
+  <% end %>
+</div>

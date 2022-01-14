@@ -1,0 +1,17 @@
+<% @page_title = "Edit Stat" %>
+
+<%= link_to("<< Back to List", stats_path(:page => params[:page])) %>
+
+<div>
+  <h2>Edit Stat</h2>
+
+  <%= form_for(@stat, :url => stat_path(@stat, :page => params[:page])) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f, :mode => :edit}) %>
+
+    <div>
+      <%= f.submit("Edit Stat") %>
+    </div>
+
+  <% end %>
+</div>

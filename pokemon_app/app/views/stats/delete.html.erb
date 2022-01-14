@@ -1,0 +1,19 @@
+<% @page_title = "Delete Stat" %>
+
+<%= link_to("<< Back to List", stats_path(:page => params[:page])) %>
+
+<div>
+  <h2>Remove Pokemon Type</h2>
+
+  <%= form_for(@stat, :method => 'delete', :url => stat_path(@stat, :page => params[:page])) do |f| %>
+
+    <p>Are you sure you want to permanently remove this Stat?</p>
+
+    <p><%= "(id #{f.object.id}) #{f.object.name}"  %></p>
+
+    <div>
+      <%= f.submit("Delete Stat") %>
+    </div>
+
+  <% end %>
+</div>

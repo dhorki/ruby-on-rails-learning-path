@@ -1,0 +1,30 @@
+<% @page_title = "Show Species" %>
+
+<%= link_to("<< Back to List", species_index_path(:page => params[:page])) %>
+
+<div>
+  <h2>Show Species</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <td><%= @species.id %></td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <td><%= @species.name %></td>
+    </tr>
+    <tr>
+      <th>url</th>
+      <td><%= link_to(@species.url, @species.url) %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @species.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @species.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

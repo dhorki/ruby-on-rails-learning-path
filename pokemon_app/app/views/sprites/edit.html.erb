@@ -1,0 +1,17 @@
+<% @page_title = "Edit Sprite" %>
+
+<%= link_to("<< Back to List", sprites_path(:pokemon_id => params[:pokemon_id], :pokemon_page => params[:pokemon_page], :page => params[:page])) %>
+
+<div>
+  <h2>Edit Sprite</h2>
+
+  <%= form_for(@sprite, :url => sprite_path(@sprite, :pokemon_id => params[:pokemon_id], :pokemon_page => params[:pokemon_page], :page => params[:page])) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f, :mode => :edit}) %>
+
+    <div>
+      <%= f.submit("Edit Sprite") %>
+    </div>
+
+  <% end %>
+</div>

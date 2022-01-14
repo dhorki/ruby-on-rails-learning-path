@@ -1,0 +1,17 @@
+<% @page_title = "Edit Pokemon Move" %>
+
+<%= link_to("<< Back to List", moves_pokemons_path(:pokemon_page => params[:pokemon_page], :stat_page => @stat_page, :pokemon_id => params[:pokemon_id])) %>
+
+<div>
+  <h2>Edit Pokemon</h2>
+
+  <%= form_for(@moves_pokemon, :url => moves_pokemon_path(@moves_pokemon, :pokemon_page => params[:pokemon_page], :move_page => @move_page, :pokemon_id => params[:pokemon_id])) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f, :mode => :edit}) %>
+
+    <div>
+      <%= f.submit("Edit Pokemon Move") %>
+    </div>
+
+  <% end %>
+</div>

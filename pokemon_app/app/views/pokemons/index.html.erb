@@ -1,0 +1,59 @@
+<% @page_title = "All Pokemons" %>
+
+<div>
+  <h2>Pokemons</h2>
+  <% if user_logged_in? %>
+    <%= image_tag('plus_sign.png', :size => '20x20', :alt => '+') %>
+    <%= link_to("Add New Pokemon", new_pokemon_path(:page => params[:page])) %>
+  <% end %>
+
+  <%= will_paginate @pokemons %>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>pokeAPI<br/>id</th>
+      <th>img</th>
+      <th>Name</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Order</th>
+      <th>Base<br/>Exp.</th>
+      <th>Species</th>
+      <th>Is<br/>custom?</th>
+      <th colspan="<%= user_logged_in? ? "10" : "8" %>">Actions</th>
+    </tr>
+    <% @pokemons.each do |pokemon| %>
+      <tr>
+        <td><%= pokemon.id %></td>
+        <td><%= pokemon.pokeapi_id %></td>
+        <td><%= link_to(
+                  image_placeholder(pokemon.sprite ? pokemon.sprite.official_artwork_front_default : nil, '64x64'),
+                  pokemon.sprite ? pokemon.sprite.official_artwork_front_default : '#'
+                )
+            %></td>
+        <td><%= pokemon.name %></td>
+        <td><%= pokemon.height %></td>
+        <td><%= pokemon.weight %></td>
+        <td><%= pokemon.order %></td>
+        <td><%= pokemon.base_experience %></td>
+        <td><%= pokemon.species.name %></td>
+        <td><%= check_box_tag(:is_custom, :is_custom, pokemon.is_custom, disabled: true) %></td>
+        <td><%= link_to("Show", pokemon_path(pokemon, :pokemon_page => @pokemon_page)) %></td>
+        <td><%= link_to(pokemon.stats.empty? ? '[Stats]' : "Stats", pokemons_stats_path(:pokemon_id => pokemon.id, :pokemon_page => @pokemon_page)) %></td>
+        <td><%= link_to(pokemon.abilities.empty? ? '[Abilities]' : "Abilities", abilities_pokemons_path(:pokemon_id => pokemon.id, :pokemon_page => @pokemon_page)) %></td>
+        <td><%= link_to(pokemon.types.empty? ? '[Types]' : "Types", pokemons_types_path(:pokemon_id => pokemon.id, :pokemon_page => @pokemon_page)) %></td>
+        <td><%= link_to(pokemon.sprite.nil? ? '[Sprites]' : "Sprites", sprites_path(:pokemon_id => pokemon.id, :pokemon_page => @pokemon_page)) %></td>
+        <td><%= link_to(pokemon.forms.empty? ? '[Forms]' : "Forms", forms_pokemons_path(:pokemon_id => pokemon.id, :pokemon_page => @pokemon_page)) %></td>
+        <td><%= link_to(pokemon.items.empty? ? '[Items]' : "Items", items_pokemons_path(:pokemon_id => pokemon.id, :pokemon_page => @pokemon_page)) %></td>
+        <td><%= link_to(pokemon.moves.empty? ? '[Moves]' : "Moves", moves_pokemons_path(:pokemon_id => pokemon.id, :pokemon_page => @pokemon_page)) %></td>
+        <% if user_logged_in? %>
+          <td><%= user_logged_in? ? link_to("Edit", edit_pokemon_path(pokemon, :pokemon_page => @pokemon_page)) : '' %></td>
+          <td><%= user_logged_in? ? link_to("Delete", delete_pokemon_path(pokemon, :pokemon_page => @pokemon_page)) : '' %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @pokemons %>
+</div>
+
+

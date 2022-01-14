@@ -1,0 +1,54 @@
+<%= error_messages_for(f.object) %>
+<table>
+  <% if mode == :edit %>
+    <tr>
+      <th>#</th>
+      <td><%= @pokemon.id %></td>
+    </tr>
+    <tr>
+      <th>pokeAPI id</th>
+      <td><%= @pokemon.pokeapi_id %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <th>Name</th>
+    <td><%= f.text_field(:name) %></td>
+  </tr>
+  <tr>
+    <th>Height</th>
+    <td><%= f.text_field(:height) %></td>
+  </tr>
+  <tr>
+    <th>Weight</th>
+    <td><%= f.text_field(:weight) %></td>
+  </tr>
+  <tr>
+    <th>Order</th>
+    <td><%= f.text_field(:order) %></td>
+  </tr>
+  <tr>
+    <th>Base Experience</th>
+    <td><%= f.text_field(:base_experience) %></td>
+  </tr>
+  <tr>
+    <th>Species</th>
+    <td><%= f.select(:species_id, Species.alpha_sorted.map {|s| [ s.name, s.id ] }) %></td>
+  </tr>
+  <% if mode == :new %>
+    <%= f.hidden_field(:is_custom) %>
+  <% end %>
+  <% if mode == :edit %>
+    <tr>
+      <th>Is custom?</th>
+      <td><%= f.check_box(:is_custom, :disabled => true) %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @pokemon.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @pokemon.updated_at %></td>
+    </tr>
+  <% end %>
+</table>

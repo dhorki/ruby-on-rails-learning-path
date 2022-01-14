@@ -1,0 +1,44 @@
+<% @page_title = @pokemon_id ? "#{@pokemon_name} (id: #{@pokemon_id}) Types" : "All Pokemons Types" %>
+
+<%= link_to("<< Back to Pokemon List", pokemons_path(:pokemon_page => params[:pokemon_page])) %>
+
+<div>
+  <h2><%= @pokemon_id ? "#{@pokemon_name} (id: #{@pokemon_id}) Types" : "Types" %></h2>
+  <% if user_logged_in? %>
+    <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
+    <%= link_to("Add New Pokemon Type", new_pokemons_type_path(:pokemon_page => params[:pokemon_page], :type_page => @type_page, :pokemon_id => params[:pokemon_id])) %>
+  <% end %>
+
+  <%= will_paginate @pokemon_types %>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Pokemon ID</th>
+      <th>Pokemon Name</th>
+      <th>Type ID</th>
+      <th>Type Name</th>
+      <th>Slot</th>
+      <% if user_logged_in? %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+    <% @pokemon_types.each do |pokemon_type| %>
+      <tr>
+        <td><%= pokemon_type.id %></td>
+        <td><%= pokemon_type.pokemon.id %></td>
+        <td><%= pokemon_type.pokemon.name %></td>
+        <td><%= pokemon_type.type.id %></td>
+        <td><%= pokemon_type.type.name %></td>
+        <td><%= pokemon_type.slot %></td>
+        <td>
+          <%= link_to("Show", pokemons_type_path(pokemon_type, :pokemon_page => params[:pokemon_page], :type_page => @type_page, :pokemon_id => params[:pokemon_id])) %>
+          <% if user_logged_in? %>
+            <%= link_to("Edit", edit_pokemons_type_path(pokemon_type, :pokemon_page => params[:pokemon_page], :type_page => @type_page, :pokemon_id => params[:pokemon_id])) %>
+            <%= link_to("Remove", delete_pokemons_type_path(pokemon_type, :pokemon_page => params[:pokemon_page], :type_page => @type_page, :pokemon_id => params[:pokemon_id])) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @pokemon_types %>
+</div>

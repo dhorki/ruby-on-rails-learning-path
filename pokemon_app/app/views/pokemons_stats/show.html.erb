@@ -1,0 +1,42 @@
+<% @page_title = "Show Stat" %>
+
+<%= link_to("<< Back to List", pokemons_stats_path(:pokemon_page => params[:pokemon_page], :stat_page => @stat_page, :pokemon_id => params[:pokemon_id])) %>
+
+<div>
+  <h2>Show Stat</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <td><%= @pokemon_stat.id %></td>
+    </tr>
+    <tr>
+      <th>Pokemon ID</th>
+      <td><%= @pokemon_stat.pokemon.id %></td>
+    </tr>
+    <tr>
+      <th>Pokemon Name</th>
+      <td><%= @pokemon_stat.pokemon.name %></td>
+    </tr>
+    <tr>
+      <th>Stat ID</th>
+      <td><%= @pokemon_stat.stat.id %></td>
+    </tr>
+    <tr>
+      <th>Stat Name</th>
+      <td><%= @pokemon_stat.stat.name %></td>
+    </tr>
+    <tr>
+      <th>Base Stat</th>
+      <td><%= @pokemon_stat.base_stat %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @pokemon_stat.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @pokemon_stat.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

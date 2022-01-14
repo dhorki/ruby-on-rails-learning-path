@@ -1,0 +1,19 @@
+<% @page_title = "Delete Move" %>
+
+<%= link_to("<< Back to List", moves_path(:page => params[:page])) %>
+
+<div>
+  <h2>Remove Pokemon Type</h2>
+
+  <%= form_for(@move, :method => 'delete', :url => move_path(@move, :page => params[:page])) do |f| %>
+
+    <p>Are you sure you want to permanently remove this Move?</p>
+
+    <p><%= "(id #{f.object.id}) #{f.object.name}"  %></p>
+
+    <div>
+      <%= f.submit("Delete Move") %>
+    </div>
+
+  <% end %>
+</div>

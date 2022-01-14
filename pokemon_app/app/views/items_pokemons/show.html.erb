@@ -1,0 +1,38 @@
+<% @page_title = "Show Pokemon Item" %>
+
+<%= link_to("<< Back to List", items_pokemons_path(:pokemon_page => params[:pokemon_page], :item_page => @item_page, :pokemon_id => params[:pokemon_id])) %>
+
+<div>
+  <h2>Show Pokemon Item</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <td><%= @items_pokemon.id %></td>
+    </tr>
+    <tr>
+      <th>Pokemon ID</th>
+      <td><%= @items_pokemon.pokemon.id %></td>
+    </tr>
+    <tr>
+      <th>Pokemon Name</th>
+      <td><%= @items_pokemon.pokemon.name %></td>
+    </tr>
+    <tr>
+      <th>Item ID</th>
+      <td><%= @items_pokemon.item.id %></td>
+    </tr>
+    <tr>
+      <th>Item Name</th>
+      <td><%= @items_pokemon.item.name %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @items_pokemon.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @items_pokemon.updated_at %></td>
+    </tr>
+  </table>
+
+</div>
