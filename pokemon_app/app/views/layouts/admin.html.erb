@@ -9,6 +9,12 @@
 <div id="header">
   <h1>Simple CMS <%= user_logged_in? ? "Admin" : "" %></h1>
 </div>
+<% if user_logged_in? %>
+  <div>
+    Logged in as: <%= link_to(session[:username], access_path) %>
+  </div>
+  <br/>
+<% end %>
 <div id="main">
   <% if !flash[:notice].blank? %>
     <div class="notice">

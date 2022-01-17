@@ -1,9 +1,7 @@
 <% @page_title = "All Abilities" %>
 
-<%= link_to("<< Back to Menu", pokemons_path(:page => params[:page])) %>
-
 <div>
-  <h2>Abilities</h2>
+  <h2>Abilities Catalog</h2>
   <% if user_logged_in? %>
     <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
     <%= link_to("Add New Ability", new_ability_path(:page => params[:page])) %>
@@ -37,5 +35,3 @@
   <%= will_paginate @abilities %>
 
 </div>
-
-

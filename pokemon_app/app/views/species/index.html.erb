@@ -3,7 +3,7 @@
 <%= link_to("<< Back to Menu", pokemons_path(:page => params[:page])) %>
 
 <div>
-  <h2>Species</h2>
+  <h2>Species Catalog</h2>
   <% if user_logged_in? %>
     <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
     <%= link_to("Add New Species", new_species_path(:page => params[:page])) %>

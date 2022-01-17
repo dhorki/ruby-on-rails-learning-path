@@ -1,9 +1,7 @@
 <% @page_title = "All Stats" %>
 
-<%= link_to("<< Back to Menu", pokemons_path(:page => params[:page])) %>
-
 <div>
-  <h2>Stats</h2>
+  <h2>Stats Catalog</h2>
   <% if user_logged_in? %>
     <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
     <%= link_to("Add New Stat", new_stat_path(:page => params[:page])) %>
@@ -37,5 +35,3 @@
   <%= will_paginate @stats %>
   
 </div>
-
-
