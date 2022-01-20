@@ -1,7 +1,10 @@
-class Move < ApplicationRecord
-  has_and_belongs_to_many :pokemons
+# frozen_string_literal: true
 
-  scope :alpha_sorted, lambda { order("name ASC") }
+class Move < ApplicationRecord
+  has_many :moves_pokemons, dependent: :destroy
+  has_many :pokemons, through: :moves_pokemons
+
+  scope :alpha_sorted, -> { order('name ASC') }
 
   # validates_presence_of :name
   # validates_length_of :name, :maximum => 255

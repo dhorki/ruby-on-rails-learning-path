@@ -286,6 +286,10 @@ kbd {
     vertical-align: bottom
 }
 
+.field_with_errors input {
+  border-color: #c62828;
+}
+
 .code {
     white-space: break-spaces
 }

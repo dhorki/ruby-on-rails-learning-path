@@ -1,9 +1,12 @@
-class TypesController < ApplicationController
+# frozen_string_literal: true
 
+class TypesController < ApplicationController
   layout 'admin'
 
+  before_action :navigation_params
+
   def index
-      @types = Type.alpha_sorted.paginate(:page => params[:page])
+    @types = Type.alpha_sorted.paginate(page: params[:page])
   end
 
   def show
@@ -19,7 +22,7 @@ class TypesController < ApplicationController
 
     if @type.save
       flash[:notice] = "The Type '#{@type.name} (id: #{@type.id})' was created successfully"
-      redirect_to(types_path(@type, :page => params[:age]))
+      redirect_to(types_path(@type, @nav_params))
     else
       render('new')
     end
@@ -33,10 +36,10 @@ class TypesController < ApplicationController
     @type = Type.find(params[:id])
 
     if @type.update(type_params)
-      flash[:notice] = "The Type was updated successfully"
-      redirect_to(types_path(@type, :page => params[:age]))
+      flash[:notice] = 'The Type was updated successfully'
+      redirect_to(types_path(@type, @nav_params))
     else
-      render('edit', :locals => {:page => params[:page]})
+      render('edit', locals: @nav_params)
     end
   end
 
@@ -48,11 +51,18 @@ class TypesController < ApplicationController
     @type = Type.find(params[:id])
     @type.destroy
     flash[:notice] = "The Type '#{@type.name}' was removed successfully"
-    redirect_to(types_path(:page => params[:page]))
+    redirect_to(types_path(@nav_params))
   end
 
   private
+
   def type_params
     params.require(:type).permit(:name, :url)
+  end
+
+  def navigation_params
+    @nav_params = {
+      page: params[:page]
+    }
   end
 end

@@ -1,13 +1,16 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
- ####################################################################
+Rails.application.routes.draw do
+  ####################################################################
   root 'pokemons#index'
 
-  get 'access', :to => 'access#menu'
+  get 'access', to: 'access#menu'
   get 'access/menu'
   get 'access/login'
   post 'access/attempt_login'
   get 'access/logout'
+
+  ####################################################################
 
   resources :users do
     member do
@@ -51,7 +54,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, :except => [:show] do
+  resources :users, except: [:show] do
     member do
       get :delete
     end
@@ -113,5 +116,4 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   get 'loader/load'
-
 end

@@ -1,8 +1,10 @@
-class Type < ApplicationRecord
-  has_many :pokemons_types, :dependent => :destroy
-  has_many :pokemons, :through => :pokemons_types
+# frozen_string_literal: true
 
-  scope :alpha_sorted, lambda { order("name ASC") }
+class Type < ApplicationRecord
+  has_many :pokemons_types, dependent: :destroy
+  has_many :pokemons, through: :pokemons_types
+
+  scope :alpha_sorted, -> { order('name ASC') }
 
   # validates_presence_of :name
   # validates_length_of :name, :maximum => 255

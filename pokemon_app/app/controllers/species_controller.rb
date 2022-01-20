@@ -1,9 +1,12 @@
-class SpeciesController < ApplicationController
+# frozen_string_literal: true
 
+class SpeciesController < ApplicationController
   layout 'admin'
 
+  before_action :navigation_params
+
   def index
-      @species = Species.alpha_sorted.paginate(:page => params[:page])
+    @species = Species.alpha_sorted.paginate(page: params[:page])
   end
 
   def show
@@ -19,7 +22,7 @@ class SpeciesController < ApplicationController
 
     if @species.save
       flash[:notice] = "The Species '#{@species.name} (id: #{@species.id})' was created successfully"
-      redirect_to(species_path(@species, :page => params[:age]))
+      redirect_to(species_path(@species, @nav_params))
     else
       render('new')
     end
@@ -33,10 +36,10 @@ class SpeciesController < ApplicationController
     @species = Species.find(params[:id])
 
     if @species.update(species_params)
-      flash[:notice] = "The Species was updated successfully"
-      redirect_to(species_index_path(@species, :page => params[:age]))
+      flash[:notice] = 'The Species was updated successfully'
+      redirect_to(species_index_path(@species, @nav_params))
     else
-      render('edit', :locals => {:page => params[:page]})
+      render('edit', locals: @nav_params)
     end
   end
 
@@ -48,12 +51,18 @@ class SpeciesController < ApplicationController
     @species = Species.find(params[:id])
     @species.destroy
     flash[:notice] = "The Species '#{@species.name}' was removed successfully"
-    redirect_to(species_index_path(:page => params[:page]))
+    redirect_to(species_index_path(@nav_params))
   end
 
   private
+
   def species_params
     params.require(:species).permit(:name, :url)
   end
-end
 
+  def navigation_params
+    @nav_params = {
+      page: params[:page]
+    }
+  end
+end

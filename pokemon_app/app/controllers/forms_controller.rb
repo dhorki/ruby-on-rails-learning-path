@@ -1,9 +1,12 @@
-class FormsController < ApplicationController
+# frozen_string_literal: true
 
+class FormsController < ApplicationController
   layout 'admin'
 
+  before_action :navigation_params
+
   def index
-      @forms = Form.alpha_sorted.paginate(:page => params[:page])
+    @forms = Form.alpha_sorted.paginate(page: params[:page])
   end
 
   def show
@@ -19,7 +22,7 @@ class FormsController < ApplicationController
 
     if @form.save
       flash[:notice] = "The Form '#{@form.name} (id: #{@form.id})' was created successfully"
-      redirect_to(forms_path(@form, :page => params[:age]))
+      redirect_to(forms_path(@form, @navigation_params))
     else
       render('new')
     end
@@ -33,10 +36,10 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
 
     if @form.update(form_params)
-      flash[:notice] = "The Form was updated successfully"
-      redirect_to(forms_path(@form, :page => params[:age]))
+      flash[:notice] = 'The Form was updated successfully'
+      redirect_to(forms_path(@form, page: params[:age]))
     else
-      render('edit', :locals => {:page => params[:page]})
+      render('edit', locals: @navigation_params)
     end
   end
 
@@ -48,11 +51,18 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
     @form.destroy
     flash[:notice] = "The Form '#{@form.name}' was removed successfully"
-    redirect_to(forms_path(:page => params[:page]))
+    redirect_to(forms_path(@navigation_params))
   end
 
   private
+
   def form_params
     params.require(:form).permit(:name, :url)
+  end
+
+  def navigation_params
+    @nav_params = {
+      page: params[:page]
+    }
   end
 end

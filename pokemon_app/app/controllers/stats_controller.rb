@@ -1,9 +1,12 @@
-class StatsController < ApplicationController
+# frozen_string_literal: true
 
+class StatsController < ApplicationController
   layout 'admin'
 
+  before_action :navigation_params
+
   def index
-      @stats = Stat.alpha_sorted.paginate(:page => params[:page])
+    @stats = Stat.alpha_sorted.paginate(page: params[:page])
   end
 
   def show
@@ -19,7 +22,7 @@ class StatsController < ApplicationController
 
     if @stat.save
       flash[:notice] = "The Stat '#{@stat.name} (id: #{@stat.id})' was created successfully"
-      redirect_to(stats_path(@stat, :page => params[:age]))
+      redirect_to(stats_path(@stat, @nav_params))
     else
       render('new')
     end
@@ -33,10 +36,10 @@ class StatsController < ApplicationController
     @stat = Stat.find(params[:id])
 
     if @stat.update(stat_params)
-      flash[:notice] = "The Stat was updated successfully"
-      redirect_to(stats_path(@stat, :page => params[:age]))
+      flash[:notice] = 'The Stat was updated successfully'
+      redirect_to(stats_path(@stat, @nav_params))
     else
-      render('edit', :locals => {:page => params[:page]})
+      render('edit', locals: @nav_params)
     end
   end
 
@@ -48,11 +51,18 @@ class StatsController < ApplicationController
     @stat = Stat.find(params[:id])
     @stat.destroy
     flash[:notice] = "The Stat '#{@stat.name}' was removed successfully"
-    redirect_to(stats_path(:page => params[:page]))
+    redirect_to(stats_path(@nav_params))
   end
 
   private
+
   def stat_params
     params.require(:stat).permit(:name, :url)
+  end
+
+  def navigation_params
+    @nav_params = {
+      page: params[:page]
+    }
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include ApplicationHelper
 
@@ -6,11 +8,11 @@ class ApplicationController < ActionController::Base
   private
 
   def confirm_logged_in
-    unless user_logged_in?
-      flash[:notice] = "Please log in"
-      redirect_to(access_login_path)
-      # redirect to to prevent the action from running
-    end
-  end
+    return if user_logged_in?
 
+    flash[:notice] = 'Please log in'
+
+    # redirect to to prevent the action from running
+    redirect_to(access_login_path)
+  end
 end

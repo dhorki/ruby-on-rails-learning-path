@@ -1,9 +1,12 @@
-class AbilitiesController < ApplicationController
+# frozen_string_literal: true
 
+class AbilitiesController < ApplicationController
   layout 'admin'
 
+  before_action :navigation_params
+
   def index
-      @abilities = Ability.alpha_sorted.paginate(:page => params[:page])
+    @abilities = Ability.alpha_sorted.paginate(page: params[:page])
   end
 
   def show
@@ -19,7 +22,7 @@ class AbilitiesController < ApplicationController
 
     if @ability.save
       flash[:notice] = "The Ability '#{@ability.name} (id: #{@ability.id})' was created successfully"
-      redirect_to(abilities_path(@ability, :page => params[:age]))
+      redirect_to(abilities_path(@ability, @nav_params))
     else
       render('new')
     end
@@ -33,10 +36,10 @@ class AbilitiesController < ApplicationController
     @ability = Ability.find(params[:id])
 
     if @ability.update(ability_params)
-      flash[:notice] = "The Ability was updated successfully"
-      redirect_to(abilities_path(@ability, :page => params[:age]))
+      flash[:notice] = 'The Ability was updated successfully'
+      redirect_to(abilities_path(@ability, @nav_params))
     else
-      render('edit', :locals => {:page => params[:page]})
+      render('edit', locals: @nav_params)
     end
   end
 
@@ -48,11 +51,18 @@ class AbilitiesController < ApplicationController
     @ability = Ability.find(params[:id])
     @ability.destroy
     flash[:notice] = "The Ability '#{@ability.name}' was removed successfully"
-    redirect_to(abilities_path(:page => params[:page]))
+    redirect_to(abilities_path(@nav_params))
   end
 
   private
+
   def ability_params
     params.require(:ability).permit(:name, :url)
+  end
+
+  def navigation_params
+    @nav_params = {
+      page: params[:page]
+    }
   end
 end
