@@ -7,21 +7,32 @@
     </tr>
   <% end %>
   <tr>
-    <th>LastName</th>
-    <td><%= f.text_field(:last_name) %></td>
+    <th>username</th>
+    <td><%= f.text_field(:username) %></td>
   </tr>
+  <% if mode == :new %>
+    <tr>
+      <th>password</th>
+      <td><%= f.password_field(:password) %></td>
+    </tr>
+    <tr>
+      <th>confirm password</th>
+      <td><%= f.password_field(:password_confirmation) %></td>
+    </tr>
+  <% end %>
   <tr>
     <th>First Name</th>
     <td><%= f.text_field(:first_name) %></td>
   </tr>
   <tr>
-    <th>username</th>
-    <td><%= f.text_field(:username) %></td>
+    <th>Last Name</th>
+    <td><%= f.text_field(:last_name) %></td>
   </tr>
   <tr>
     <th>email</th>
     <td><%= f.text_field(:email) %></td>
   </tr>
+  
   <% if mode == :edit %>
     <tr>
       <th>created at</th>

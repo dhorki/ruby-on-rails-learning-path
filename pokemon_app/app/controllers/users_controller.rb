@@ -1,11 +1,12 @@
-class UsersController < ApplicationController
+# frozen_string_literal: true
 
+class UsersController < ApplicationController
   layout 'admin'
 
   before_action :confirm_logged_in
 
   def index
-      @users = User.alpha_sorted.paginate(:page => params[:page])
+    @users = User.alpha_sorted.paginate(page: params[:page])
   end
 
   def show
@@ -20,8 +21,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:notice] = "The User '#{@user.name} (id: #{@user.id})' was created successfully"
-      redirect_to(users_path(@user, :page => params[:age]))
+      flash[:notice] = "The User '#{@user.username} (id: #{@user.id})' was created successfully"
+      redirect_to(users_path(@user, page: params[:age]))
     else
       render('new')
     end
@@ -35,10 +36,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      flash[:notice] = "The User was updated successfully"
-      redirect_to(users_path(@user, :page => params[:age]))
+      flash[:notice] = 'The User was updated successfully'
+      redirect_to(users_path(@user, page: params[:age]))
     else
-      render('edit', :locals => {:page => params[:page]})
+      render('edit', locals: { page: params[:page], set_password: params[:set_password] })
     end
   end
 
@@ -49,12 +50,13 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = "The User '#{@user.name}' was deleted successfully"
-    redirect_to(users_path(:page => params[:page]))
+    flash[:notice] = "The User '#{@user.username}' was deleted successfully"
+    redirect_to(users_path(page: params[:page]))
   end
 
   private
+
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :password)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
   end
 end

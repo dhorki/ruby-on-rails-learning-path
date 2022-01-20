@@ -1,5 +1,7 @@
 <% @page_title = "All Sprites" %>
 
+<%= params[:pokemon_id] ? link_to("<< Back to Pokemon List", pokemons_path(:pokemon_page => params[:pokemon_page])) : '' %>
+
 <div>
   <h2>Sprites Catalog</h2>
   <% if user_logged_in? %>
