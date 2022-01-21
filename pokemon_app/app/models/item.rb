@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Item < ApplicationRecord
-  
   has_many :items_pokemons, dependent: :destroy
   has_many :pokemons, through: :items_pokemons
 

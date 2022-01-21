@@ -193,16 +193,20 @@ class PokeapiLoader
   end
 
   def base_pokemon(pokemon)
-    db_pokemon = Pokemon.new
+    db_pokemon = Pokemon.find_by_name(pokemon['name'])
 
-    # fill pokemon base information
-    db_pokemon.base_experience = pokemon['base_experience']
-    db_pokemon.height = pokemon['height']
-    db_pokemon.pokeapi_id = pokemon['id']
-    db_pokemon.is_default = pokemon['is_default']
-    db_pokemon.name = pokemon['name']
-    db_pokemon.order = pokemon['order']
-    db_pokemon.weight = pokemon['weight']
+    unless db_pokemon
+      db_pokemon = Pokemon.new
+
+      # fill pokemon base information
+      db_pokemon.base_experience = pokemon['base_experience']
+      db_pokemon.height = pokemon['height']
+      db_pokemon.pokeapi_id = pokemon['id']
+      db_pokemon.is_default = pokemon['is_default']
+      db_pokemon.name = pokemon['name']
+      db_pokemon.order = pokemon['order']
+      db_pokemon.weight = pokemon['weight']
+    end
 
     db_pokemon
   end
