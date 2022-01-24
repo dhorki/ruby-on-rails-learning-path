@@ -16,65 +16,73 @@ ActiveRecord::Schema.define(version: 2021_12_21_194017) do
   enable_extension "plpgsql"
 
   create_table "abilities", force: :cascade do |t|
-    t.string "name", default: ""
+    t.string "name", default: "", null: false
     t.string "url", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_abilities_on_name", unique: true
   end
 
   create_table "abilities_pokemons", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "ability_id"
+    t.bigint "pokemon_id"
+    t.bigint "ability_id"
     t.boolean "is_hidden", default: false
     t.integer "slot", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["ability_id", "pokemon_id"], name: "index_abilities_pokemons_on_ability_id_and_pokemon_id"
+    t.index ["ability_id"], name: "index_abilities_pokemons_on_ability_id"
+    t.index ["pokemon_id"], name: "index_abilities_pokemons_on_pokemon_id"
   end
 
   create_table "forms", force: :cascade do |t|
-    t.string "name", default: ""
+    t.string "name", default: "", null: false
     t.string "url", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_forms_on_name", unique: true
   end
 
   create_table "forms_pokemons", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "form_id"
+    t.bigint "pokemon_id"
+    t.bigint "form_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["pokemon_id", "form_id"], name: "index_forms_pokemons_on_pokemon_id_and_form_id"
+    t.index ["form_id"], name: "index_forms_pokemons_on_form_id"
+    t.index ["pokemon_id"], name: "index_forms_pokemons_on_pokemon_id"
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name", default: ""
+    t.string "name", default: "", null: false
     t.string "url", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_items_on_name", unique: true
   end
 
   create_table "items_pokemons", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "item_id"
+    t.bigint "pokemon_id"
+    t.bigint "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["pokemon_id", "item_id"], name: "index_items_pokemons_on_pokemon_id_and_item_id"
+    t.index ["item_id"], name: "index_items_pokemons_on_item_id"
+    t.index ["pokemon_id"], name: "index_items_pokemons_on_pokemon_id"
   end
 
   create_table "moves", force: :cascade do |t|
-    t.string "name", default: ""
+    t.string "name", default: "", null: false
     t.string "url", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_moves_on_name", unique: true
   end
 
   create_table "moves_pokemons", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "move_id"
+    t.bigint "pokemon_id"
+    t.bigint "move_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["pokemon_id", "move_id"], name: "index_moves_pokemons_on_pokemon_id_and_move_id"
+    t.index ["move_id"], name: "index_moves_pokemons_on_move_id"
+    t.index ["pokemon_id"], name: "index_moves_pokemons_on_pokemon_id"
   end
 
   create_table "pokemons", force: :cascade do |t|
@@ -82,42 +90,46 @@ ActiveRecord::Schema.define(version: 2021_12_21_194017) do
     t.integer "height", default: 0
     t.integer "pokeapi_id", default: 0
     t.boolean "is_default", default: false
-    t.string "name", default: ""
+    t.string "name", default: "", null: false
     t.integer "order", default: 0
     t.integer "weight", default: 0
     t.integer "species_id", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "is_custom", default: false
+    t.boolean "is_custom", default: false, null: false
+    t.index ["name"], name: "index_pokemons_on_name", unique: true
   end
 
   create_table "pokemons_stats", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "stat_id"
+    t.bigint "pokemon_id"
+    t.bigint "stat_id"
     t.integer "base_stat", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["pokemon_id", "stat_id"], name: "index_pokemons_stats_on_pokemon_id_and_stat_id"
+    t.index ["pokemon_id"], name: "index_pokemons_stats_on_pokemon_id"
+    t.index ["stat_id"], name: "index_pokemons_stats_on_stat_id"
   end
 
   create_table "pokemons_types", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "type_id"
+    t.bigint "pokemon_id"
+    t.bigint "type_id"
     t.integer "slot", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["pokemon_id", "type_id"], name: "index_pokemons_types_on_pokemon_id_and_type_id"
+    t.index ["pokemon_id"], name: "index_pokemons_types_on_pokemon_id"
+    t.index ["type_id"], name: "index_pokemons_types_on_type_id"
   end
 
   create_table "species", force: :cascade do |t|
-    t.string "name", default: ""
+    t.string "name", default: "", null: false
     t.string "url", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_species_on_name", unique: true
   end
 
   create_table "sprites", force: :cascade do |t|
-    t.integer "pokemon_id"
+    t.bigint "pokemon_id"
     t.string "back_default"
     t.string "back_female"
     t.string "back_shiny"
@@ -129,20 +141,23 @@ ActiveRecord::Schema.define(version: 2021_12_21_194017) do
     t.string "official_artwork_front_default"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["pokemon_id"], name: "index_sprites_on_pokemon_id"
   end
 
   create_table "stats", force: :cascade do |t|
-    t.string "name", default: ""
+    t.string "name", default: "", null: false
     t.string "url", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_stats_on_name", unique: true
   end
 
   create_table "types", force: :cascade do |t|
-    t.string "name", default: ""
+    t.string "name", default: "", null: false
     t.string "url", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_types_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -153,6 +168,14 @@ ActiveRecord::Schema.define(version: 2021_12_21_194017) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "abilities_pokemons", "pokemons"
+  add_foreign_key "forms_pokemons", "pokemons"
+  add_foreign_key "items_pokemons", "pokemons"
+  add_foreign_key "moves_pokemons", "pokemons"
+  add_foreign_key "pokemons_stats", "pokemons"
+  add_foreign_key "pokemons_types", "pokemons"
+  add_foreign_key "sprites", "pokemons"
 end
