@@ -3,7 +3,7 @@
 class CreateStats < ActiveRecord::Migration[6.1]
   def up
     create_table :stats do |t|
-      t.string 'name', default: ''
+      t.string 'name', default: '', index: {unique: true}, null: false
       t.string 'url', default: ''
       t.timestamps
     end

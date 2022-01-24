@@ -3,7 +3,7 @@
 class CreateSprites < ActiveRecord::Migration[6.1]
   def up
     create_table :sprites do |t|
-      t.integer 'pokemon_id'
+      t.references :pokemon, foreign_key: true
       t.string 'back_default'
       t.string 'back_female'
       t.string 'back_shiny'

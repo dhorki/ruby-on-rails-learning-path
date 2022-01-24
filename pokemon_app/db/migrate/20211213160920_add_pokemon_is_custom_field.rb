@@ -2,6 +2,6 @@
 
 class AddPokemonIsCustomField < ActiveRecord::Migration[6.1]
   def up
-    add_column(:pokemons, 'is_custom', :boolean, default: false)
+    add_column(:pokemons, 'is_custom', :boolean, default: false, null: false)
   end
 end

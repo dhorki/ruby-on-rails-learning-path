@@ -3,12 +3,10 @@
 class CreateHeldItemsJoin < ActiveRecord::Migration[6.1]
   def up
     create_table :items_pokemons do |t|
-      t.integer 'pokemon_id'
-      t.integer 'item_id'
+      t.references :pokemon, foreign_key: true
+      t.references :item, foreign_keys: true
       t.timestamps
     end
-
-    add_index('items_pokemons', %w[pokemon_id item_id])
   end
 
   def down

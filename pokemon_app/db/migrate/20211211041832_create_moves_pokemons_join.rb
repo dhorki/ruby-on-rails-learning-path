@@ -3,12 +3,10 @@
 class CreateMovesPokemonsJoin < ActiveRecord::Migration[6.1]
   def up
     create_table :moves_pokemons do |t|
-      t.integer 'pokemon_id'
-      t.integer 'move_id'
+      t.references :pokemon, foreign_key: true
+      t.references :move, foreign_keys: true
       t.timestamps
     end
-
-    add_index('moves_pokemons', %w[pokemon_id move_id])
   end
 
   def down

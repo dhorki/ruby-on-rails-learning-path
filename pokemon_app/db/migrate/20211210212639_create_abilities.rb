@@ -3,7 +3,7 @@
 class CreateAbilities < ActiveRecord::Migration[6.1]
   def up
     create_table :abilities do |t|
-      t.string 'name', default: ''
+      t.string 'name', default: '', index: {unique: true}, null: false
       t.string 'url', default: ''
 
       t.timestamps

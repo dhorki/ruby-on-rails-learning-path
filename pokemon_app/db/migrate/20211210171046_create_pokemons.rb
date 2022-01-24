@@ -7,7 +7,7 @@ class CreatePokemons < ActiveRecord::Migration[6.1]
       t.integer 'height', default: 0
       t.integer 'pokeapi_id', default: 0
       t.boolean 'is_default', default: false
-      t.string 'name', default: ''
+      t.string 'name', default: '', index: {unique: true}, null: false
       t.integer 'order', default: 0
       t.integer 'weight', default: 0
       t.integer 'species_id', default: 0
