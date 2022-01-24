@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Simple CMS: <%= @page_title || "Admin Area" %></title>
+  <title>Simple PokeAPI: <%= @page_title || "Admin Area" %></title>
   <%= stylesheet_link_tag('main', :media => 'all') %>
 </head>
 <body>
 
 <div id="header">
-  <h1>Simple CMS <%= user_logged_in? ? "Admin" : "" %></h1>
+  <h1>Simple PokeAPI <%= user_logged_in? ? "Admin" : "" %></h1>
 </div>
 <% if user_logged_in? %>
   <div>
