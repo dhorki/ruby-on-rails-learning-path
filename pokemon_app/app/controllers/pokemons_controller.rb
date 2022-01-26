@@ -8,12 +8,20 @@ class PokemonsController < ApplicationController
 
   def index
     @pokemons = Pokemon.alpha_sorted.paginate(page: @pokemon_page)
-    @page = pokemon_page
+    @page = @pokemon_page
+    respond_to do |format|
+      format.html
+      format.json { render json: @pokemon }
+    end
     # render('index')         # index is rendered by default
   end
 
   def show
     @pokemon = Pokemon.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @pokemon }
+    end
   end
 
   def new

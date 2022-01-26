@@ -40,5 +40,6 @@ class Pokemon < ApplicationRecord
                     uniqueness: true,
                     length: { maximum: 255 }
   validates :order, numericality: { greater_than: 0, only_integer: true }
-  validates :weight, numericality: { only_integer: true }
+  validates :weight, numericality: { greater_than_or_equal_to: 0, only_integer: true }
+  validates :height, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 end
