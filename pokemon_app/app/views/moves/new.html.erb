@@ -1,0 +1,17 @@
+<% @page_title = "Create Move" %>
+
+<%= link_to("<< Back to List", moves_path(:page => params[:page])) %>
+
+<div>
+  <h2>Create Move</h2>
+
+  <%= form_for(@move, :url => moves_path(@move, :page => params[:page])) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f, :mode => :new}) %>
+
+    <div>
+      <%= f.submit("Create Move") %>
+    </div>
+
+  <% end %>
+</div>

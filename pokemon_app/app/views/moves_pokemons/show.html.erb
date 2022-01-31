@@ -1,0 +1,38 @@
+<% @page_title = "Show Pokemon Move" %>
+
+<%= link_to("<< Back to List", moves_pokemons_path(:pokemon_page => params[:pokemon_page], :move_page => @move_page, :pokemon_id => params[:pokemon_id])) %>
+
+<div>
+  <h2>Show Pokemon Move</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <td><%= @moves_pokemon.id %></td>
+    </tr>
+    <tr>
+      <th>Pokemon ID</th>
+      <td><%= @moves_pokemon.pokemon.id %></td>
+    </tr>
+    <tr>
+      <th>Pokemon Name</th>
+      <td><%= @moves_pokemon.pokemon.name %></td>
+    </tr>
+    <tr>
+      <th>Move ID</th>
+      <td><%= @moves_pokemon.move.id %></td>
+    </tr>
+    <tr>
+      <th>Move Name</th>
+      <td><%= @moves_pokemon.move.name %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @moves_pokemon.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @moves_pokemon.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

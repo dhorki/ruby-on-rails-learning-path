@@ -1,0 +1,37 @@
+<% @page_title = "All Moves" %>
+
+<div>
+  <h2>Moves Catalog</h2>
+  <% if user_logged_in? %>
+    <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
+    <%= link_to("Add New Move", new_move_path(:page => params[:page])) %>
+  <% end %>
+
+  <%= will_paginate @moves %>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>name</th>
+      <th>url</th>
+      <% if user_logged_in? %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+    <% @moves.each do |move| %>
+      <tr>
+        <td><%= move.id %></td>
+        <td><%= move.name %></td>
+        <td><%= link_to(move.url, move.url) %></td>
+        <td>
+          <%= link_to("Show", move_path(move, :page => params[:page])) %>
+          <% if user_logged_in? %>
+            <%= link_to("Edit", edit_move_path(move, :page => params[:page])) %>
+            <%= link_to("Delete", delete_move_path(move), :page => params[:page]) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @moves %>
+  
+</div>

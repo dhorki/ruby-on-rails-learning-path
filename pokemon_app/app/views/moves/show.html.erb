@@ -1,0 +1,30 @@
+<% @page_title = "Show Move" %>
+
+<%= link_to("<< Back to List", moves_path(:page => params[:page])) %>
+
+<div>
+  <h2>Show Move</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <td><%= @move.id %></td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <td><%= @move.name %></td>
+    </tr>
+    <tr>
+      <th>url</th>
+      <td><%= link_to(@move.url, @move.url) %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @move.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @move.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

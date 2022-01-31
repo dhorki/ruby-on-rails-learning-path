@@ -1,0 +1,19 @@
+<% @page_title = "Remove Pokemon Ability" %>
+
+<%= link_to("<< Back to List", abilities_pokemons_path(:pokemon_page => params[:pokemon_page], :ability_page => @ability_page, :pokemon_id => params[:pokemon_id])) %>
+
+<div>
+  <h2>Remove Pokemon Stat</h2>
+
+  <%= form_for(@abilities_pokemon, :method => 'delete', :url => abilities_pokemon_path(@abilities_pokemon, :pokemon_page => params[:pokemon_page], :ability_page => @ability_page, :pokemon_id => params[:pokemon_id])) do |f| %>
+
+    <p>Are you sure you want to permanently remove this Ability?</p>
+
+    <p><%= "(pokemon-ability id #{f.object.id}) #{f.object.ability.name}"  %></p>
+
+    <div>
+      <%= f.submit("Remove Pokemon Ability") %>
+    </div>
+
+  <% end %>
+</div>

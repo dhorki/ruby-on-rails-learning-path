@@ -1,0 +1,38 @@
+<% @page_title = "Show User" %>
+
+<%= link_to("<< Back to List", users_path(:page => params[:page])) %>
+
+<div>
+  <h2>Show User</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <td><%= @user.id %></td>
+    </tr>
+    <tr>
+      <th>username</th>
+      <td><%= @user.username %></td>
+    </tr>
+    <tr>
+      <th>First Name</th>
+      <td><%= @user.first_name %></td>
+    </tr>
+    <tr>
+      <th>Last Name</th>
+      <td><%= @user.last_name %></td>
+    </tr>
+    <tr>
+      <th>email</th>
+      <td><%= mail_to(@user.email, @user.email) %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @user.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @user.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

@@ -1,0 +1,30 @@
+<% @page_title = "Show Form" %>
+
+<%= link_to("<< Back to List", forms_path(:page => params[:page])) %>
+
+<div>
+  <h2>Show Form</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <td><%= @form.id %></td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <td><%= @form.name %></td>
+    </tr>
+    <tr>
+      <th>url</th>
+      <td><%= link_to(@form.url, @form.url) %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @form.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @form.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

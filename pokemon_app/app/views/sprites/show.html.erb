@@ -1,0 +1,75 @@
+<% @page_title = "Show Sprite" %>
+
+<%= link_to("<< Back to List", sprites_path(:pokemon_id => params[:pokemon_id], :pokemon_page => params[:pokemon_page], :page => params[:page])) %>
+
+<div>
+  <h2>Show Sprite</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <td><%= @sprite.id %></td>
+    </tr>
+    <tr>
+      <th>Pokemon ID</th>
+      <td><%= @sprite.pokemon.id %></td>
+    </tr>
+    <tr>
+      <th>Pokemon</th>
+      <td><%= @sprite.pokemon.name %></td>
+    </tr>
+    <tr>
+      <th>Back Default</th>
+      <td><%= link_to(image_placeholder(@sprite.back_default, '96x96'), @sprite.back_default) %></td>
+      <td><%= @sprite.back_default %>
+    </tr>
+    <tr>
+      <th>Back Female</th>
+      <td><%= link_to(image_placeholder(@sprite.back_female, '96x96'), @sprite.back_female) %></td>
+      <td><%= @sprite.back_female %>
+    </tr>
+    <tr>
+      <th>Back Shiny</th>
+      <td><%= link_to(image_placeholder(@sprite.back_shiny, '96x96'), @sprite.back_shiny) %></td>
+      <td><%= @sprite.back_shiny %>
+    </tr>
+    <tr>
+      <th>Back Shiny Female</th>
+      <td><%= link_to(image_placeholder(@sprite.back_shiny_female, '96x96'), @sprite.back_shiny_female) %></td>
+      <td><%= @sprite.back_shiny_female %>
+    </tr>
+    <tr>
+      <th>Front Default</th>
+      <td><%= link_to(image_placeholder(@sprite.front_default, '96x96'), @sprite.front_default) %></td>
+      <td><%= @sprite.front_default %>
+    </tr>
+    <tr>
+      <th>Front Female</th>
+      <td><%= link_to(image_placeholder(@sprite.front_female, '96x96'), @sprite.front_female) %></td>
+      <td><%= @sprite.front_female %>
+    </tr>
+    <tr>
+      <th>Front Shiny</th>
+      <td><%= link_to(image_placeholder(@sprite.front_shiny, '96x96'), @sprite.front_shiny) %></td>
+      <td><%= @sprite.front_shiny %>
+    </tr>
+    <tr>
+      <th>Front Shiny Female</th>
+      <td><%= link_to(image_placeholder(@sprite.front_shiny_female, '96x96'), @sprite.front_shiny_female) %></td>
+      <td><%= @sprite.front_shiny_female %>
+    </tr>
+    <tr>
+      <th>Official Artwork Front Default</th>
+      <td><%= link_to(image_placeholder(@sprite.official_artwork_front_default, '96x96'), @sprite.official_artwork_front_default) %></td>
+      <td><%= @sprite.official_artwork_front_default %>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td colspan="2"><%= @sprite.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td colspan="2"><%= @sprite.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

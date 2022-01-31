@@ -1,0 +1,17 @@
+<% @page_title = "Add Pokemon Ability" %>
+
+<%= link_to("<< Back to List", abilities_pokemons_path(:pokemon_page => params[:pokemon_page], :stat_page => @stat_page, :pokemon_id => params[:pokemon_id])) %>
+
+<div>
+  <h2>Add Pokemon Ability</h2>
+
+  <%= form_for(@abilities_pokemon, :url => abilities_pokemons_path(@abilities_pokemon, :pokemon_page => params[:pokemon_page], :stat_page => @stat_page, :pokemon_id => params[:pokemon_id])) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f, :mode => :new}) %>
+
+    <div>
+      <%= f.submit("Add Pokemon Ability") %>
+    </div>
+
+  <% end %>
+</div>

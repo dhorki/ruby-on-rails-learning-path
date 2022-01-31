@@ -1,0 +1,30 @@
+<% @page_title = "Show Item" %>
+
+<%= link_to("<< Back to List", items_path(:page => params[:page])) %>
+
+<div>
+  <h2>Show Item</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <td><%= @item.id %></td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <td><%= @item.name %></td>
+    </tr>
+    <tr>
+      <th>url</th>
+      <td><%= link_to(@item.url, @item.url) %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @item.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @item.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

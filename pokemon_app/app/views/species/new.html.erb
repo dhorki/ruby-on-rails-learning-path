@@ -1,0 +1,17 @@
+<% @page_title = "Create Species" %>
+
+<%= link_to("<< Back to List", species_index_path(:page => params[:page])) %>
+
+<div>
+  <h2>Create Species</h2>
+
+  <%= form_for(@species, :url => species_index_path(@species, :page => params[:page])) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f, :mode => :new}) %>
+
+    <div>
+      <%= f.submit("Create Species") %>
+    </div>
+
+  <% end %>
+</div>

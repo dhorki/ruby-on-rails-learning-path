@@ -1,0 +1,40 @@
+<% @page_title = @pokemon_id ? "#{@pokemon_name} (id: #{@pokemon_id}) Items" : "All Pokemons Items" %>
+
+<%= link_to("<< Back to Pokemon List", pokemons_path(:pokemon_page => params[:pokemon_page])) %>
+
+<div>
+  <h2><%= @pokemon_id ? "#{@pokemon_name} (id: #{@pokemon_id}) Items" : "Items" %></h2>
+  <% if user_logged_in? %>
+    <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
+    <%= link_to("Add New Pokemon Item", new_items_pokemon_path(:pokemon_page => params[:pokemon_page], :item_page => @item_page, :pokemon_id => params[:pokemon_id])) %>
+  <% end %>
+
+  <%= will_paginate @items_pokemons %>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Pokemon ID</th>
+      <th>Pokemon Name</th>
+      <th>Item ID</th>
+      <th>Item Name</th>
+      <th>Actions</th>
+    </tr>
+    <% @items_pokemons.each do |item_pokemon| %>
+      <tr>
+        <td><%= item_pokemon.id %></td>
+        <td><%= item_pokemon.pokemon.id %></td>
+        <td><%= item_pokemon.pokemon.name %></td>
+        <td><%= item_pokemon.item.id %></td>
+        <td><%= item_pokemon.item.name %></td>
+        <td>
+          <%= link_to("Show", items_pokemon_path(item_pokemon, :pokemon_page => params[:pokemon_page], :item_page => @item_page, :pokemon_id => params[:pokemon_id])) %>
+          <% if user_logged_in? %>
+            <%= link_to("Edit", edit_items_pokemon_path(item_pokemon, :pokemon_page => params[:pokemon_page], :item_page => @item_page, :pokemon_id => params[:pokemon_id])) %>
+            <%= link_to("Remove", delete_items_pokemon_path(item_pokemon, :pokemon_page => params[:pokemon_page], :item_page => @item_page, :pokemon_id => params[:pokemon_id])) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @items_pokemons %>
+</div>

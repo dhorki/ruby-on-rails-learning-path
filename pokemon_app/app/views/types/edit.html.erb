@@ -1,0 +1,17 @@
+<% @page_title = "Edit Type" %>
+
+<%= link_to("<< Back to List", types_path(:page => params[:page])) %>
+
+<div>
+  <h2>Edit Type</h2>
+
+  <%= form_for(@type, :url => type_path(@type, :page => params[:page])) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f, :mode => :edit}) %>
+
+    <div>
+      <%= f.submit("Edit Type") %>
+    </div>
+
+  <% end %>
+</div>

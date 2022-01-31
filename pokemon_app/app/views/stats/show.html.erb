@@ -1,0 +1,30 @@
+<% @page_title = "Show Stat" %>
+
+<%= link_to("<< Back to List", stats_path(:page => params[:page])) %>
+
+<div>
+  <h2>Show Stat</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <td><%= @stat.id %></td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <td><%= @stat.name %></td>
+    </tr>
+    <tr>
+      <th>url</th>
+      <td><%= link_to(@stat.url, @stat.url) %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @stat.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @stat.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

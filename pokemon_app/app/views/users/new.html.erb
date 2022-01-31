@@ -1,0 +1,17 @@
+<% @page_title = "Create User" %>
+
+<%= link_to("<< Back to List", users_path(:page => params[:page])) %>
+
+<div>
+  <h2>Create User</h2>
+
+  <%= form_for(@user, :url => users_path(@user, :page => params[:page])) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f, :mode => :new}) %>
+
+    <div>
+      <%= f.submit("Create User") %>
+    </div>
+
+  <% end %>
+</div>

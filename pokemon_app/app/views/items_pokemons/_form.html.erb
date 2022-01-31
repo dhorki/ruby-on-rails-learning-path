@@ -1,0 +1,27 @@
+<%= error_messages_for(f.object) %>
+<table>
+  <tr>
+    <% if mode == :edit %>
+      <th>#</th>
+      <td><%= @items_pokemon.id %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th>Pokemon</th>
+    <td><%= f.select(:pokemon_id, Pokemon.alpha_sorted.map {|s| [ s.name, s.id ] }) %></td>
+  </tr>
+  <tr>
+    <th>Item</th>
+    <td><%= f.select(:item_id, Item.alpha_sorted.map {|s| [ s.name, s.id ] }) %></td>
+  </tr>
+  <% if mode == :edit %>
+    <tr>
+      <th>created at</th>
+      <td><%= @items_pokemon.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @items_pokemon.updated_at %></td>
+    </tr>
+  <% end %>
+</table>

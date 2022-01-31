@@ -1,0 +1,58 @@
+<% @page_title = "Show Pokemon" %>
+
+<%= link_to("<< Back to Pokemon List", pokemons_path(:pokemon_page => @pokemon_page)) %>
+
+<div>
+  <h2>Show Pokemon</h2>
+
+  <table>
+    <tr>
+    <tr>
+      <th>img</th>
+      <td><%= link_to(
+                image_placeholder(@pokemon.sprite ? @pokemon.sprite.official_artwork_front_default : nil, '64x64', 'No artwork'),
+                @pokemon.sprite ? @pokemon.sprite.official_artwork_front_default : '#'
+              ) %></td>
+    </tr>
+      <th>#</th>
+      <td><%= @pokemon.id %></td>
+    </tr>
+    <tr>
+      <th>pokeAPI id</th>
+      <td><%= @pokemon.pokeapi_id %></td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <td><%= @pokemon.name %></td>
+    </tr>
+    <tr>
+      <th>Height</th>
+      <td><%= @pokemon.height %></td>
+    </tr>
+    <tr>
+      <th>Weight</th>
+      <td><%= @pokemon.weight %></td>
+    </tr>
+    <tr>
+      <th>Order</th>
+      <td><%= @pokemon.order %></td>
+    </tr>
+    <tr>
+      <th>Base Experience</th>
+      <td><%= @pokemon.base_experience %></td>
+    </tr>
+    <tr>
+      <th>Is custom?</th>
+      <td><%= check_box_tag(:is_custom, @pokemon.is_custom, @pokemon.is_custom, disabled: true) %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @pokemon.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @pokemon.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

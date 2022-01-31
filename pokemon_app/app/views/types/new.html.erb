@@ -1,0 +1,17 @@
+<% @page_title = "Create Type" %>
+
+<%= link_to("<< Back to List", types_path(:page => params[:page])) %>
+
+<div>
+  <h2>Create Type</h2>
+
+  <%= form_for(@type, :url => types_path(@type, :page => params[:page])) do |f| %>
+
+    <%= render(:partial => 'form', :locals => {:f => f, :mode => :new}) %>
+
+    <div>
+      <%= f.submit("Create Type") %>
+    </div>
+
+  <% end %>
+</div>

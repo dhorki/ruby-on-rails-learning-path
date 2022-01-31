@@ -1,0 +1,17 @@
+<% @page_title = "Edit User" %>
+
+<%= link_to("<< Back to List", users_path(:page => params[:page])) %>
+
+<div>
+  <h2>Edit User</h2>
+
+  <%= form_for(@user, :url => user_path(@user, :page => params[:page], :set_password => params[:set_password])) do |f| %>
+    <% form = params[:set_password] ? "set_password_form" : "form" %>
+    <%= render(:partial => form, :locals => {:f => f, :mode => :edit}) %>
+
+    <div>
+      <%= f.submit("Edit User") %>
+    </div>
+
+  <% end %>
+</div>

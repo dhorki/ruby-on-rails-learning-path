@@ -1,0 +1,46 @@
+<% @page_title = "Show Pokemon Ability" %>
+
+<%= link_to("<< Back to List", abilities_pokemons_path(:pokemon_page => params[:pokemon_page], :ability_page => @ability_page, :pokemon_id => params[:pokemon_id])) %>
+
+<div>
+  <h2>Show Pokemon Ability</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <td><%= @abilities_pokemon.id %></td>
+    </tr>
+    <tr>
+      <th>Pokemon ID</th>
+      <td><%= @abilities_pokemon.pokemon.id %></td>
+    </tr>
+    <tr>
+      <th>Pokemon Name</th>
+      <td><%= @abilities_pokemon.pokemon.name %></td>
+    </tr>
+    <tr>
+      <th>Ability ID</th>
+      <td><%= @abilities_pokemon.ability.id %></td>
+    </tr>
+    <tr>
+      <th>Ability Name</th>
+      <td><%= @abilities_pokemon.ability.name %></td>
+    </tr>
+    <tr>
+      <th>Is hidden?</th>
+      <td><%= check_box_tag(:is_hidden, @abilities_pokemon.is_hidden, @abilities_pokemon.is_hidden, disabled: true) %></td>
+    </tr>
+    <tr>
+      <th>Slot</th>
+      <td><%= @abilities_pokemon.slot %></td>
+    </tr>
+    <tr>
+      <th>created at</th>
+      <td><%= @abilities_pokemon.created_at %></td>
+    </tr>
+    <tr>
+      <th>updated at</th>
+      <td><%= @abilities_pokemon.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

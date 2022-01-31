@@ -1,0 +1,40 @@
+<% @page_title = @pokemon_id ? "#{@pokemon_name} (id: #{@pokemon_id}) Forms" : "All Pokemons Forms" %>
+
+<%= link_to("<< Back to Pokemon List", pokemons_path(:pokemon_page => params[:pokemon_page])) %>
+
+<div>
+  <h2><%= @pokemon_id ? "#{@pokemon_name} (id: #{@pokemon_id}) Forms" : "Forms" %></h2>
+  <% if user_logged_in? %>
+    <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
+    <%= link_to("Add New Pokemon Form", new_forms_pokemon_path(:pokemon_page => params[:pokemon_page], :form_page => @form_page, :pokemon_id => params[:pokemon_id])) %>
+  <% end %>
+
+  <%= will_paginate @forms_pokemons %>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Pokemon ID</th>
+      <th>Pokemon Name</th>
+      <th>Form ID</th>
+      <th>Form Name</th>
+      <th>Actions</th>
+    </tr>
+    <% @forms_pokemons.each do |form_pokemon| %>
+      <tr>
+        <td><%= form_pokemon.id %></td>
+        <td><%= form_pokemon.pokemon.id %></td>
+        <td><%= form_pokemon.pokemon.name %></td>
+        <td><%= form_pokemon.form.id %></td>
+        <td><%= form_pokemon.form.name %></td>
+        <td>
+          <%= link_to("Show", forms_pokemon_path(form_pokemon, :pokemon_page => params[:pokemon_page], :form_page => @form_page, :pokemon_id => params[:pokemon_id])) %>
+          <% if user_logged_in? %>
+            <%= link_to("Edit", edit_forms_pokemon_path(form_pokemon, :pokemon_page => params[:pokemon_page], :form_page => @form_page, :pokemon_id => params[:pokemon_id])) %>
+            <%= link_to("Remove", delete_forms_pokemon_path(form_pokemon, :pokemon_page => params[:pokemon_page], :form_page => @form_page, :pokemon_id => params[:pokemon_id])) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @forms_pokemons %>
+</div>

@@ -1,0 +1,40 @@
+<% @page_title = @pokemon_id ? "#{@pokemon_name} (id: #{@pokemon_id}) Moves" : "All Pokemons Moves" %>
+
+<%= link_to("<< Back to Pokemon List", pokemons_path(:pokemon_page => params[:pokemon_page])) %>
+
+<div>
+  <h2><%= @pokemon_id ? "#{@pokemon_name} (id: #{@pokemon_id}) Moves" : "Moves" %></h2>
+  <% if user_logged_in? %>
+    <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
+    <%= link_to("Add New Pokemon Move", new_moves_pokemon_path(:pokemon_page => params[:pokemon_page], :move_page => @move_page, :pokemon_id => params[:pokemon_id])) %>
+  <% end %>
+
+  <%= will_paginate @moves_pokemons %>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Pokemon ID</th>
+      <th>Pokemon Name</th>
+      <th>Move ID</th>
+      <th>Move Name</th>
+      <th>Actions</th>
+    </tr>
+    <% @moves_pokemons.each do |move_pokemon| %>
+      <tr>
+        <td><%= move_pokemon.id %></td>
+        <td><%= move_pokemon.pokemon.id %></td>
+        <td><%= move_pokemon.pokemon.name %></td>
+        <td><%= move_pokemon.move.id %></td>
+        <td><%= move_pokemon.move.name %></td>
+        <td>
+          <%= link_to("Show", moves_pokemon_path(move_pokemon, :pokemon_page => params[:pokemon_page], :move_page => @move_page, :pokemon_id => params[:pokemon_id])) %>
+          <% if user_logged_in? %>
+            <%= link_to("Edit", edit_moves_pokemon_path(move_pokemon, :pokemon_page => params[:pokemon_page], :move_page => @move_page, :pokemon_id => params[:pokemon_id])) %>
+            <%= link_to("Remove", delete_moves_pokemon_path(move_pokemon, :pokemon_page => params[:pokemon_page], :move_page => @move_page, :pokemon_id => params[:pokemon_id])) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @moves_pokemons %>
+</div>

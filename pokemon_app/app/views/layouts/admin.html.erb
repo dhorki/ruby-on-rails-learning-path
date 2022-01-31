@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple PokeAPI: <%= @page_title || "Admin Area" %></title>
+  <%= stylesheet_link_tag('main', :media => 'all') %>
+  <%= favicon_link_tag %>
+</head>
+<body>
+
+<div id="header">
+  <h1>Simple PokeAPI <%= user_logged_in? ? "Admin" : "" %></h1>
+</div>
+<% if user_logged_in? %>
+  <div>
+    Logged in as: <%= link_to(session[:username], access_path) %>
+  </div>
+  <br/>
+<% end %>
+<div id="main">
+  <% if !flash[:notice].blank? %>
+    <div class="notice">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <div id="navigation">
+    <table>
+      <td><%= link_to("Pokemons", pokemons_path) %></td>
+      <td><%= link_to("Species", species_index_path) %></td>
+      <td><%= link_to("Stats", stats_path) %></td>
+      <td><%= link_to("Abilities", abilities_path) %></td>
+      <td><%= link_to("Types", types_path) %></td>
+      <td><%= link_to("Sprites", sprites_path) %></td>
+      <td><%= link_to("Forms", forms_path) %></td>
+      <td><%= link_to("Items", items_path) %></td>
+      <td><%= link_to("Moves", moves_path) %></td>
+    </table>
+    <br/>
+  </div>
+  <div id="content">
+    <%= yield %>
+  </div>
+</div>
+<!--<div id="footer">-->
+<!--  <p id="copyright">&copy; lynda.com</p>-->
+<!--</div>-->
+</body>
+</html>

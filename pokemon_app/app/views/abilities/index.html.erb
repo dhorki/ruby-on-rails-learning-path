@@ -1,0 +1,39 @@
+<% @page_title = "All Abilities" %>
+
+<div>
+  <h2>Abilities Catalog</h2>
+  <% if user_logged_in? %>
+    <%#= image_tag('plus_sign.png', :size => '11x11', :alt => '+') %>
+    <%= link_to("Add New Ability", new_ability_path(:page => params[:page])) %>
+  <% end %>
+
+  <%= will_paginate @abilities %>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>name</th>
+      <th>url</th>
+      <% if user_logged_in? %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+    <% @abilities.each do |ability| %>
+      <tr>
+        <td><%= ability.id %></td>
+        <td><%= ability.name %></td>
+        <td><%= link_to(ability.url, ability.url) %></td>
+        <td>
+          <%= link_to("Show", ability_path(ability, :page => params[:page])) %>
+          <% if user_logged_in? %>
+            <%= link_to("Edit", edit_ability_path(ability, :page => params[:page])) %>
+            <%= link_to("Delete", delete_ability_path(ability, :page => params[:page])) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @abilities %>
+
+</div>
+
+
